@@ -1,0 +1,2 @@
+serviceClass: com.google.endpoints.myapplication.client.GreetingService
+path: 0C6D8A8D20B674B33423EA3089BF91B5.gwt.rpc

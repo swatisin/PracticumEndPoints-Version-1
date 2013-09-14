@@ -1,0 +1,116 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://dark-safeguard-335.appspot.com/_ah/api",
+  "name" : "helloworld",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://dark-safeguard-335.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "methods" : {
+    "helloworld.greetings.multiply" : {
+      "path" : "multiply",
+      "httpMethod" : "post",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.google.endpoints.myapplication.server.Greetings.insertGreeting",
+      "request" : {
+        "parameters" : {
+          "times" : {
+            "type" : "int32",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "helloworld.greetings.message" : {
+      "path" : "message",
+      "httpMethod" : "get",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.google.endpoints.myapplication.server.Greetings.getGreeting",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int32",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "helloworld.greetings.authed" : {
+      "path" : "greeting/authed",
+      "httpMethod" : "POST",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.google.endpoints.myapplication.server.Greetings.authedGreeting",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Greeting" : {
+        "id" : "Greeting",
+        "type" : "object",
+        "properties" : {
+          "message" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.google.endpoints.myapplication.server.Greetings.insertGreeting" : {
+        "request" : {
+          "$ref" : "Greeting"
+        },
+        "response" : {
+          "$ref" : "Greeting"
+        }
+      },
+      "com.google.endpoints.myapplication.server.Greetings.getGreeting" : {
+        "response" : {
+          "$ref" : "Greeting"
+        }
+      },
+      "com.google.endpoints.myapplication.server.Greetings.authedGreeting" : {
+        "response" : {
+          "$ref" : "Greeting"
+        }
+      }
+    }
+  }
+}
